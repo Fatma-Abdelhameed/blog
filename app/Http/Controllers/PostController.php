@@ -96,9 +96,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $postId)
     {
-        //
+        $postInfo = request()->all();
+        Post::where('id', $postId)->update([
+            'title'=>$postInfo['post-title'],
+            'description'=>$postInfo['post-description'],
+            'user_id'=>$postInfo['post-creator'],
+        ]);
+        return redirect('/posts')->with('status', 'Post is updated successfully');
     }
 
     /**
