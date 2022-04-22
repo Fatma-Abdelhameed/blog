@@ -12,6 +12,9 @@
             border-collapse: separate;
             border-spacing:0 20px;
         }
+        .delete-form{
+            display: inline;
+        }
     </style>
 </head>
 <body class="bg-light">

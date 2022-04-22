@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 @if (session('status'))
-    <div class="alert alert-success text-center">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
@@ -33,7 +33,11 @@
                         <td>
                         <a href="{{ route('posts.view', ['post' => $post->id]) }}" class="text-info me-2 fs-5" title="View"><i class="fa-solid fa-eye"></i></a>
                         <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="text-primary me-2 fs-5" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="#" class="text-danger fs-5" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                        <form class="delete-form" method="POST" action="{{route('posts.destroy',['post'=>$post['id']])}}">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-default text-danger" title="Delete" type="submit" onclick="return confirm('you are about to delete this record \nif you are sure press ok')"><i class="fa-solid fa-trash-can fs-5"></i></button>
+                        </form>
                         </td>
                     </tr>
                 @endforeach
