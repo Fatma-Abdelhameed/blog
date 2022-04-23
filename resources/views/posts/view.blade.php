@@ -25,15 +25,15 @@
                 <div class="creator_title">
                     <div class="row creator-name">
                         <h5 class="col-2">Name</h5>
-                        <p class="col-10">{{$creator->name}}</p>
+                        <p class="col-10">{{$post->user->name}}</p>
                     </div>
                     <div class="row creator-email">
                         <h5 class="col-2">Email</h5>
-                        <p class="col-10">{{$creator->email}}</p>
+                        <p class="col-10">{{$post->user->email}}</p>
                     </div>
                     <div class="row creator-date">
                         <h5 class="col-2">Created At</h5>
-                        <p class="col-10">{{ \Carbon\Carbon::parse($creator->created_at)->toDayDateTimeString() }}</p>
+                        <p class="col-10">{{ \Carbon\Carbon::parse($post->user->created_at)->toDayDateTimeString() }}</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     </div>
                     <div>
                         <span style="font-size: 1rem; font-weight: bold">Created At: </span>
-                        {{ \Carbon\Carbon::parse($creator->created_at)->toDayDateTimeString() }}
+                        {{ \Carbon\Carbon::parse($post->user->created_at)->toDayDateTimeString() }}
                     </div>
                 </div>
             </div>

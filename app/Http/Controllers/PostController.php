@@ -65,11 +65,9 @@ class PostController extends Controller
     public function show($postId)
     {
         $postInfo = Post::find($postId);
-        $userInfo = User::find($postInfo->user_id);
         $users = User::all();
         return view('posts.view', [
             'post' => $postInfo,
-            'creator'=> $userInfo,
             'users' => $users
         ]);
     }
