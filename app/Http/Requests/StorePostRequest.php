@@ -26,9 +26,10 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         $usersId = (array) null;
-        foreach(User::all('id')->toArray() as $user){
+        foreach(User::all('id') as $user){
             $usersId[] = $user['id'];
         }
+        //$usersId = User::all('id')->toArray();
         return [
             'post-title'=>['required', 'min:3', Rule::unique('posts', 'title')->ignore($this->post)],
             'post-description'=>['required', 'min:10'],
@@ -42,8 +43,7 @@ class StorePostRequest extends FormRequest
             'post-title.unique'=>'Title Field has already been taken',
             'post-title.min'=>'Title Field can not be less than 3 letters',
             'post-description.required'=>'Description Field is required',
-            'post-description.min'=>'Description Field can not be less than 10 letters',
-            'post-creator.selected'=>'The selected creator is invalid.',
+            'post-description.min'=>'Description Field can not be less than 10 letters'
         ];
     }
 }

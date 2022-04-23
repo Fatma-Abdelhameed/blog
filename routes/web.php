@@ -28,3 +28,7 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Route::post('/posts/comments/{post}', [CommentController::class, 'store'])->name('posts.comments.store');
 Route::delete('/posts/comments/{comment}', [CommentController::class, 'destroy'])->name('posts.comments.destroy');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
