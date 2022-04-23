@@ -81,11 +81,11 @@ class PostController extends Controller
     public function edit($postId)
     {
         $postInfo = Post::find($postId);
-        $userInfo = User::find($postInfo->user_id);
+        //$userInfo = User::find($postInfo->user_id);
         $users = User::all();
         return view('posts.edit', [
             'post' => $postInfo,
-            'creator'=> $userInfo,
+            //'creator'=> $userInfo,
             'users'=>$users
         ]);
     }

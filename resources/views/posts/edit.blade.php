@@ -15,8 +15,8 @@
             <label for="exampleInputPassword1" class="form-label">Post Creator</label>
                 <select name="post-creator" class="form-select" aria-label="Default select example">
                     @foreach($users as $user)
-                        @if($user->id == $creator->id)
-                            <option value="{{$creator->id}}" selected>{{$creator->name}}</option>
+                        @if($user->id == $post->user->id)
+                            <option value="{{$post->user->id}}" selected>{{$post->user->name}}</option>
                         @else
                             <option value="{{$user->id}}">{{$user->name}}</option>
                         @endif
