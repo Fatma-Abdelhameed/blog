@@ -23,6 +23,9 @@
                     <option value="{{$user->id}}">{{$user->name}}</option>
                     @endforeach
                 </select>
+                @error('post-creator')
+                <div class="alert text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-success">Create</button>
     </form>

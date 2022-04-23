@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class StorePostRequest extends FormRequest
 {
@@ -24,10 +25,14 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
-        //dd($this->post);
+        $usersId = (array) null;
+        foreach(User::all('id')->toArray() as $user){
+            $usersId[] = $user['id'];
+        }
         return [
             'post-title'=>['required', 'min:3', Rule::unique('posts', 'title')->ignore($this->post)],
-            'post-description'=>['required', 'min:10']
+            'post-description'=>['required', 'min:10'],
+            'post-creator'=>Rule::in($usersId),
         ];
     }
     public function messages()
@@ -38,6 +43,7 @@ class StorePostRequest extends FormRequest
             'post-title.min'=>'Title Field can not be less than 3 letters',
             'post-description.required'=>'Description Field is required',
             'post-description.min'=>'Description Field can not be less than 10 letters',
+            'post-creator.selected'=>'The selected creator is invalid.',
         ];
     }
 }
