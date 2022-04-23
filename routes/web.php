@@ -26,4 +26,5 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.view');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::post('/posts/comments/{post}', [CommentController::class, 'store'])->name('posts.comments.store');
+Route::delete('/posts/comments/{comment}', [CommentController::class, 'destroy'])->name('posts.comments.destroy');
 

@@ -66,7 +66,12 @@
         @foreach($post->comments as $comment)
             <div class="card mt-4 mb-4">
                 <div class="card-header">
-                    {{$comment->user->name}}
+                    <span>{{$comment->user->name}}</span>
+                    <form class="delete-form" method="POST" action="{{route('posts.comments.destroy',['comment'=>$comment['id']])}}">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-default text-danger" title="Delete" type="submit" onclick="return confirm('you are about to delete this comment \nif you are sure press ok')"><i class="fa-solid fa-trash-can fs-5"></i></button>
+                        </form> 
                 </div>
                 <div class="card-body">
                     <div>

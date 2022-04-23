@@ -17,5 +17,11 @@ class CommentController extends Controller
 
         return back();
     }
+    public function destroy($commentId)
+    {
+        $comment = Comment::find($commentId);
+        $comment->delete();
+        return back();
+    }
     
 }
