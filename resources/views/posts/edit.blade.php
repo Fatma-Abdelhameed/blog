@@ -6,10 +6,16 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Title</label>
                 <input name="post-title" type="text" class="form-control" id="exampleInputEmail1" value="{{$post->title}}">
+                @error('post-title')
+                <div class="alert text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Description</label>
                 <textarea name="post-description" class="form-control" id="exampleInputPassword1">{{$post->description}}</textarea>
+                @error('post-description')
+                <div class="alert text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Post Creator</label>

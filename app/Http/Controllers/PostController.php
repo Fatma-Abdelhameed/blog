@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Http\Requests\StorePostRequest;
 use App\Models\CommentController;
 //use Carbon\Carbon;
 class PostController extends Controller
@@ -44,7 +45,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $post_data = request()->all();
         Post::create([
@@ -81,11 +82,9 @@ class PostController extends Controller
     public function edit($postId)
     {
         $postInfo = Post::find($postId);
-        //$userInfo = User::find($postInfo->user_id);
         $users = User::all();
         return view('posts.edit', [
             'post' => $postInfo,
-            //'creator'=> $userInfo,
             'users'=>$users
         ]);
     }
@@ -97,7 +96,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $postId)
+    public function update(StorePostRequest $request, $postId)
     {
         $postInfo = request()->all();
         Post::where('id', $postId)->update([
