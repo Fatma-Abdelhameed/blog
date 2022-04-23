@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\CommentController;
 //use Carbon\Carbon;
 class PostController extends Controller
 {
@@ -65,9 +66,11 @@ class PostController extends Controller
     {
         $postInfo = Post::find($postId);
         $userInfo = User::find($postInfo->user_id);
+        $users = User::all();
         return view('posts.view', [
             'post' => $postInfo,
-            'creator'=> $userInfo
+            'creator'=> $userInfo,
+            'users' => $users
         ]);
     }
 
