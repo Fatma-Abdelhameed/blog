@@ -12,18 +12,12 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post = Post::all();
+        $post = Post::with('user')->get();
         return PostResource::collection($post);
     }
     public function show($postId)
     {
         $post = Post::find($postId);
-        /*return [
-            'id'=>$post->id,
-            'title'=>$post->title,
-            'description'=>$post->description,
-            'user_id'=>$post->user_id
-        ];*/
         return new PostResource($post);
     
     }
