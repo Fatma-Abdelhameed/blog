@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Http\Requests\StorePostRequest;
 use App\Models\CommentController;
-//use Carbon\Carbon;
+use Illuminate\Support\Str;
 class PostController extends Controller
 {
     /**
@@ -51,7 +51,8 @@ class PostController extends Controller
         Post::create([
             'title'=>$post_data['post-title'],
             'description'=>$post_data['post-description'],
-            'user_id'=>$post_data['post-creator']
+            'user_id'=>$post_data['post-creator'],
+            'slug'=>Str::slug($request->input('title'))
         ]);
         //return redirect('/posts');
        return redirect('/posts')->with('status', 'Post is inserted successfully');
@@ -63,8 +64,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($postId)
+    public function show($postSlug)
     {
+        $postId = Post::where('slug',$postSlug)->get()->toArray()[0]['id'];
         $postInfo = Post::find($postId);
         $users = User::all();
         return view('posts.view', [
