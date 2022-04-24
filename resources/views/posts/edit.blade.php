@@ -18,6 +18,10 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label class="form-label" for="inputGroupFile01">Upload Post Photo</label>
+                <input type="file" name="avatar" class="form-control" id="inputGroupFile01">
+            </div>
+            <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Post Creator</label>
                 <select name="post-creator" class="form-select" aria-label="Default select example">
                     @foreach($users as $user)

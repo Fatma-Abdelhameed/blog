@@ -52,7 +52,9 @@ class PostController extends Controller
         $post_data = request()->all();
         $file = $request->file('avatar');
         $name = $file->getClientOriginalName();
-        $path = $file->storeAs('avatars', $name);
+        $path = Storage::putFileAs(
+            'avatars', $request->file('avatar'), $name
+        );
         Post::create([
             'image'=>$name,
             'title'=>$post_data['post-title'],
@@ -126,7 +128,9 @@ class PostController extends Controller
     public function destroy($postId)
     {
         $post = Post::find($postId);
+        //dd($post->image);
         $post->delete();
+        Storage::delete('avatars/'.$post->image);
         return redirect('/posts')->with('status', 'Post is deleted successfully');
     }
 }
