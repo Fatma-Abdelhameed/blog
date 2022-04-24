@@ -52,7 +52,7 @@ class PostController extends Controller
             'title'=>$post_data['post-title'],
             'description'=>$post_data['post-description'],
             'user_id'=>$post_data['post-creator'],
-            'slug'=>Str::slug($request->input('title'))
+            'slug'=>Str::slug($request->input('post-title'))
         ]);
         //return redirect('/posts');
        return redirect('/posts')->with('status', 'Post is inserted successfully');
@@ -105,6 +105,7 @@ class PostController extends Controller
             'title'=>$postInfo['post-title'],
             'description'=>$postInfo['post-description'],
             'user_id'=>$postInfo['post-creator'],
+            'slug'=>Str::slug($request->input('post-title'))
         ]);
         return redirect('/posts')->with('status', 'Post is updated successfully');
     }
