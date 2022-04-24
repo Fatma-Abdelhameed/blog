@@ -13,6 +13,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Posted By</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Slug</th>
@@ -25,6 +26,7 @@
                     <tr class="bg-white border-white">
                         <th scope="row">{{$post->id}}</th>
                         <td>{{$post->title}}</td>
+                        <td><img src="{{asset('')}}"></td>
                         @if ($post->user)
                             <td>{{$post->user->name}}</td>
                         @else

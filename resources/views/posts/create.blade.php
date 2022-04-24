@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form method="POST" action="{{route('posts.store')}}">
+    <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Title</label>
@@ -17,7 +17,11 @@
                 @enderror
             </div>
             <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Post Creator</label>
+                <label class="form-label" for="inputGroupFile01">Upload Post Photo</label>
+                <input type="file" name="avatar" class="form-control" id="inputGroupFile01">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Post Creator</label>
                 <select class="form-select" aria-label="Default select example" name="post-creator">
                     @foreach($users as $user)
                     <option value="{{$user->id}}">{{$user->name}}</option>

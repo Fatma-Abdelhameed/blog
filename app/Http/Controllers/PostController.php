@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\StorePostRequest;
 use App\Models\CommentController;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     /**
@@ -47,13 +48,17 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+    
         $post_data = request()->all();
+        $imagePath = Storage::putFile('avatars', $request->file('avatar'));
         Post::create([
+            'image'=>$imagePath,
             'title'=>$post_data['post-title'],
             'description'=>$post_data['post-description'],
             'user_id'=>$post_data['post-creator'],
             'slug'=>Str::slug($request->input('post-title'))
         ]);
+        //dd($post->image);
         //return redirect('/posts');
        return redirect('/posts')->with('status', 'Post is inserted successfully');
     }
