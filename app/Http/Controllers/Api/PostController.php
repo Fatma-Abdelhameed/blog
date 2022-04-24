@@ -12,4 +12,9 @@ class PostController extends Controller
 
         return Post::all();
     }
+    public function show($postId)
+    {
+        return Post::find($postId);
+    
+    }
 }
