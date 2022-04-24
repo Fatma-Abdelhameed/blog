@@ -53,7 +53,7 @@ class PostController extends Controller
         $file = $request->file('avatar');
         $name = $file->getClientOriginalName();
         $path = Storage::putFileAs(
-            'avatars', $request->file('avatar'), $name
+            'public/avatars', $request->file('avatar'), $name
         );
         Post::create([
             'image'=>$name,

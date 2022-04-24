@@ -26,7 +26,7 @@
                     <tr class="bg-white border-white">
                         <th scope="row">{{$post->id}}</th>
                         <td>{{$post->title}}</td>
-                        <td><img src="{{asset('')}}"></td>
+                        <td><img class="post-image" src="{{asset('/storage/avatars/'.$post->image)}}"></td>
                         @if ($post->user)
                             <td>{{$post->user->name}}</td>
                         @else

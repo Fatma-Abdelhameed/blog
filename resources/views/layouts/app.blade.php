@@ -28,6 +28,11 @@
         .delete-form{
             display: inline;
         }
+        .post-image{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+        }
     </style>
 </head>
 <body class="bg-light">
