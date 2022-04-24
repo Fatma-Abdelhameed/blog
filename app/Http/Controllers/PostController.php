@@ -50,9 +50,11 @@ class PostController extends Controller
     {
     
         $post_data = request()->all();
-        $imagePath = Storage::putFile('avatars', $request->file('avatar'));
+        $file = $request->file('avatar');
+        $name = $file->getClientOriginalName();
+        $path = $file->storeAs('avatars', $name);
         Post::create([
-            'image'=>$imagePath,
+            'image'=>$name,
             'title'=>$post_data['post-title'],
             'description'=>$post_data['post-description'],
             'user_id'=>$post_data['post-creator'],
