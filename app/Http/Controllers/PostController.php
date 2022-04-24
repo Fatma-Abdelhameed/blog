@@ -130,7 +130,7 @@ class PostController extends Controller
         $post = Post::find($postId);
         //dd($post->image);
         $post->delete();
-        Storage::delete('avatars/'.$post->image);
+        Storage::delete('public/avatars/'.$post->image);
         return redirect('/posts')->with('status', 'Post is deleted successfully');
     }
 }
